@@ -14,5 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+  return view('welcome');
 });
+Route::get('{path}', "AuthController@index")->where('path', '[-a-z0-9_\s]+');
