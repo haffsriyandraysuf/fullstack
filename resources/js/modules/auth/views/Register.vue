@@ -9,8 +9,9 @@
                 <v-toolbar-title>Register</v-toolbar-title>
               </v-toolbar>
               <v-card-text>
-                <v-form @submit.prevent>
+                <v-form @submit.prevent="register">
                   <v-text-field
+                    v-model="form.name"
                     label="Enter your name"
                     name="Name"
                     prepend-icon="fas fa-user-alt"
@@ -18,6 +19,7 @@
                     required
                   />
                   <v-text-field
+                    v-model="form.email"
                     label="Enter your email"
                     name="Email"
                     prepend-icon="fas fa-envelope"
@@ -25,6 +27,7 @@
                     required
                   />
                   <v-text-field
+                    v-model="form.password"
                     id="password"
                     label="Password"
                     name="password"
@@ -33,6 +36,7 @@
                     required
                   />
                   <v-text-field
+                    v-model="form.confirm"
                     id="confirm"
                     label="Re-type Password"
                     name="confirm"
@@ -57,7 +61,36 @@
 </template>
 
 <script>
+import AuthService from "../services";
 export default {
+  name: "register",
+  components: {},
+  data: () => ({
+    form: {
+      name: "",
+      email: "",
+      password: "",
+      confirm: ""
+    }
+  }),
+  methods: {
+    register() {
+      let data = {
+        name: this.form.name,
+        email: this.form.email,
+        password: this.form.password,
+        confirm: this.form.confirm
+      };
+
+      AuthService.register(data)
+        .then(result => {
+          console.log(result);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  },
   mounted() {
     console.log("Component mounted.");
   }

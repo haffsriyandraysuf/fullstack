@@ -9,8 +9,9 @@
                 <v-toolbar-title>Login</v-toolbar-title>
               </v-toolbar>
               <v-card-text>
-                <v-form @submit.prevent>
+                <v-form @submit.prevent="login">
                   <v-text-field
+                    v-model="form.email"
                     label="Enter your email"
                     name="Email"
                     prepend-icon="fas fa-envelope"
@@ -19,6 +20,7 @@
                   />
                   <v-text-field
                     id="password"
+                    v-model="form.password"
                     label="Password"
                     name="password"
                     prepend-icon="fa fa-lock"
@@ -43,9 +45,33 @@
 </template>
 
 <script>
+import AuthService from "../services";
 export default {
+  name: "login",
+  components: {},
+  data: () => ({
+    form: {
+      email: "",
+      password: ""
+    }
+  }),
+  methods: {
+    login() {
+      let data = {
+        email: this.form.email,
+        password: this.form.password
+      };
+      AuthService.login(data)
+        .then(result => {
+          console.log(result);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  },
   mounted() {
-    console.log("Component mounted.");
+    console.log("Component Login is mounted.");
   }
 };
 </script>

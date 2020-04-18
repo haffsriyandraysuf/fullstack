@@ -1938,6 +1938,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services */ "./resources/js/modules/auth/services/index.js");
 //
 //
 //
@@ -1982,9 +1983,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: "login",
+  components: {},
+  data: function data() {
+    return {
+      form: {
+        email: "",
+        password: ""
+      }
+    };
+  },
+  methods: {
+    login: function login() {
+      var data = {
+        email: this.form.email,
+        password: this.form.password
+      };
+      _services__WEBPACK_IMPORTED_MODULE_0__["default"].login(data).then(function (result) {
+        console.log(result);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
+  },
   mounted: function mounted() {
-    console.log("Component mounted.");
+    console.log("Component Login is mounted.");
   }
 });
 
@@ -1999,6 +2026,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services */ "./resources/js/modules/auth/services/index.js");
 //
 //
 //
@@ -2057,7 +2085,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: "register",
+  components: {},
+  data: function data() {
+    return {
+      form: {
+        name: "",
+        email: "",
+        password: "",
+        confirm: ""
+      }
+    };
+  },
+  methods: {
+    register: function register() {
+      var data = {
+        name: this.form.name,
+        email: this.form.email,
+        password: this.form.password,
+        confirm: this.form.confirm
+      };
+      _services__WEBPACK_IMPORTED_MODULE_0__["default"].register(data).then(function (result) {
+        console.log(result);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
+  },
   mounted: function mounted() {
     console.log("Component mounted.");
   }
@@ -38477,6 +38537,7 @@ var render = function() {
                                   on: {
                                     submit: function($event) {
                                       $event.preventDefault()
+                                      return _vm.login($event)
                                     }
                                   }
                                 },
@@ -38488,6 +38549,13 @@ var render = function() {
                                       "prepend-icon": "fas fa-envelope",
                                       type: "text",
                                       required: ""
+                                    },
+                                    model: {
+                                      value: _vm.form.email,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.form, "email", $$v)
+                                      },
+                                      expression: "form.email"
                                     }
                                   }),
                                   _vm._v(" "),
@@ -38499,6 +38567,13 @@ var render = function() {
                                       "prepend-icon": "fa fa-lock",
                                       type: "password",
                                       required: ""
+                                    },
+                                    model: {
+                                      value: _vm.form.password,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.form, "password", $$v)
+                                      },
+                                      expression: "form.password"
                                     }
                                   }),
                                   _vm._v(" "),
@@ -38620,6 +38695,7 @@ var render = function() {
                                   on: {
                                     submit: function($event) {
                                       $event.preventDefault()
+                                      return _vm.register($event)
                                     }
                                   }
                                 },
@@ -38631,6 +38707,13 @@ var render = function() {
                                       "prepend-icon": "fas fa-user-alt",
                                       type: "text",
                                       required: ""
+                                    },
+                                    model: {
+                                      value: _vm.form.name,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.form, "name", $$v)
+                                      },
+                                      expression: "form.name"
                                     }
                                   }),
                                   _vm._v(" "),
@@ -38641,6 +38724,13 @@ var render = function() {
                                       "prepend-icon": "fas fa-envelope",
                                       type: "text",
                                       required: ""
+                                    },
+                                    model: {
+                                      value: _vm.form.email,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.form, "email", $$v)
+                                      },
+                                      expression: "form.email"
                                     }
                                   }),
                                   _vm._v(" "),
@@ -38652,6 +38742,13 @@ var render = function() {
                                       "prepend-icon": "fa fa-lock",
                                       type: "password",
                                       required: ""
+                                    },
+                                    model: {
+                                      value: _vm.form.password,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.form, "password", $$v)
+                                      },
+                                      expression: "form.password"
                                     }
                                   }),
                                   _vm._v(" "),
@@ -38663,6 +38760,13 @@ var render = function() {
                                       "prepend-icon": "fa fa-key",
                                       type: "password",
                                       required: ""
+                                    },
+                                    model: {
+                                      value: _vm.form.confirm,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.form, "confirm", $$v)
+                                      },
+                                      expression: "form.confirm"
                                     }
                                   }),
                                   _vm._v(" "),
@@ -95633,6 +95737,27 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/http.js":
+/*!******************************!*\
+  !*** ./resources/js/http.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = (axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
+  baseURL: "http://127.0.0.1:8000/api",
+  headers: {
+    "Content-type": "application/json"
+  }
+}));
+
+/***/ }),
+
 /***/ "./resources/js/modules/auth/router/index.js":
 /*!***************************************************!*\
   !*** ./resources/js/modules/auth/router/index.js ***!
@@ -95655,6 +95780,48 @@ __webpack_require__.r(__webpack_exports__);
   name: 'register',
   component: _views_Register__WEBPACK_IMPORTED_MODULE_2__["default"]
 }]);
+
+/***/ }),
+
+/***/ "./resources/js/modules/auth/services/index.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/modules/auth/services/index.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../http */ "./resources/js/http.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var AuthService = /*#__PURE__*/function () {
+  function AuthService() {
+    _classCallCheck(this, AuthService);
+  }
+
+  _createClass(AuthService, [{
+    key: "login",
+    value: function login(data) {
+      return _http__WEBPACK_IMPORTED_MODULE_0__["default"].post('auth/login', data);
+    }
+  }, {
+    key: "register",
+    value: function register(data) {
+      return _http__WEBPACK_IMPORTED_MODULE_0__["default"].post('auth/register', data);
+    }
+  }]);
+
+  return AuthService;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (new AuthService());
 
 /***/ }),
 
