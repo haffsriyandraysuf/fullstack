@@ -71,7 +71,7 @@ export default {
     }
   },
   mounted() {
-    console.log("Component Login is mounted.");
+    console.log("Component mounted.");
   }
 };
 </script>

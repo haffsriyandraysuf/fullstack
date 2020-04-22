@@ -1,8 +1,8 @@
 require('./bootstrap');
 import Vue from 'vue';
 import App from './App.vue';
-import router from './Router';
-import vuetify from './vuetify';
+import router from './plugins/Router';
+import vuetify from './plugins/Vuetify';
 
 new Vue({
   router,

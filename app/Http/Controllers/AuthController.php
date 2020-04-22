@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Model\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -15,12 +15,7 @@ class AuthController extends Controller
    */
   public function __construct()
   {
-    $this->middleware('auth:api', ['except' => ['index', 'login', 'register']]);
-  }
-
-  public function index()
-  {
-    return view('welcome');
+    $this->middleware('auth:api', ['except' => ['login', 'register']]);
   }
 
   /**
