@@ -9,48 +9,67 @@
                 <v-toolbar-title>Register</v-toolbar-title>
               </v-toolbar>
               <v-card-text>
-                <v-form @submit.prevent="register">
-                  <v-text-field
-                    v-model="form.name"
-                    label="Enter your name"
-                    name="Name"
-                    prepend-icon="fas fa-user-alt"
-                    type="text"
-                    required
-                  />
-                  <v-text-field
-                    v-model="form.email"
-                    label="Enter your email"
-                    name="Email"
-                    prepend-icon="fas fa-envelope"
-                    type="text"
-                    required
-                  />
-                  <v-text-field
-                    v-model="form.password"
-                    id="password"
-                    label="Password"
-                    name="password"
-                    prepend-icon="fa fa-lock"
-                    type="password"
-                    required
-                  />
-                  <v-text-field
-                    v-model="form.confirm"
-                    id="confirm"
-                    label="Re-type Password"
-                    name="confirm"
-                    prepend-icon="fa fa-key"
-                    type="password"
-                    required
-                  />
-                  <v-card-actions>
-                    <v-btn block color="primary" type="submit">Create</v-btn>
-                  </v-card-actions>
-                  <v-card-text>
-                    <router-link to="/login">Already have an account? Login!</router-link>
-                  </v-card-text>
-                </v-form>
+                <ValidationObserver ref="form">
+                  <v-form @submit.prevent="register">
+                    <ValidationProvider
+                      name="Name"
+                      rules="required|alpha|min:3"
+                      v-slot="{ errors }"
+                    >
+                      <v-text-field
+                        v-model="form.name"
+                        label="Enter your name"
+                        prepend-icon="fas fa-user-alt"
+                        type="text"
+                        :error-messages="errors"
+                      />
+                    </ValidationProvider>
+                    <ValidationProvider name="E-mail" rules="required|email" v-slot="{ errors }">
+                      <v-text-field
+                        v-model="form.email"
+                        label="Enter your email"
+                        prepend-icon="fas fa-envelope"
+                        type="email"
+                        :error-messages="errors"
+                      />
+                    </ValidationProvider>
+                    <ValidationProvider
+                      name="Password"
+                      rules="required|min:6|alpha_num"
+                      v-slot="{ errors }"
+                      vid="confirmation"
+                    >
+                      <v-text-field
+                        v-model="form.password"
+                        id="password"
+                        label="Password"
+                        prepend-icon="fa fa-lock"
+                        type="password"
+                        :error-messages="errors"
+                      />
+                    </ValidationProvider>
+                    <ValidationProvider
+                      name="Confirm"
+                      rules="required|confirmed:confirmation"
+                      v-slot="{ errors }"
+                    >
+                      <v-text-field
+                        v-model="form.confirm"
+                        id="confirm"
+                        label="Re-type Password"
+                        prepend-icon="fa fa-key"
+                        type="password"
+                        :error-messages="errors"
+                      />
+                    </ValidationProvider>
+                    <v-card-actions>
+                      <v-btn block color="primary" type="submit">Create</v-btn>
+                    </v-card-actions>
+                    <v-card-text>
+                      <router-link to="/login">Already have an account? Login!</router-link>
+                    </v-card-text>
+                  </v-form>
+                </ValidationObserver>
               </v-card-text>
             </v-card>
           </v-col>
@@ -82,13 +101,15 @@ export default {
         confirm: this.form.confirm
       };
 
-      AuthService.register(data)
-        .then(result => {
-          console.log(result);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      if (this.$refs.form.validate()) {
+        AuthService.register(data)
+          .then(result => {
+            console.log(result);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      }
     }
   },
   mounted() {
