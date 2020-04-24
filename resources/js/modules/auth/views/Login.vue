@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import AuthService from "../services";
+import { mapActions } from "vuex";
 export default {
   name: "login",
   components: {},
@@ -64,19 +64,16 @@ export default {
     }
   }),
   methods: {
+    ...mapActions({
+      signIn: "auth/signIn"
+    }),
     login() {
-      let data = {
-        email: this.form.email,
-        password: this.form.password
-      };
       if (this.$refs.form.validate()) {
-        AuthService.login(data)
-          .then(result => {
-            console.log(result);
-          })
-          .catch(err => {
-            console.log(err);
+        this.signIn(this.form).then(() => {
+          this.$router.replace({
+            name: "dashboard"
           });
+        });
       }
     }
   },
