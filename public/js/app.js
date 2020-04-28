@@ -1957,8 +1957,258 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      dialog: false,
+      drawer: null,
+      items: [{
+        icon: 'fas fa-address-book',
+        text: 'Contacts'
+      }, {
+        icon: 'fas fa-history',
+        text: 'Frequently contacted'
+      }, {
+        icon: 'far fa-copy',
+        text: 'Duplicates'
+      }, {
+        icon: 'fas fa-angle-up',
+        'icon-alt': 'fas fa-angle-down',
+        text: 'Labels',
+        model: true,
+        children: [{
+          icon: 'fas fa-plus',
+          text: 'Create label'
+        }]
+      }, {
+        icon: 'fas fa-angle-up',
+        'icon-alt': 'fas fa-angle-down',
+        text: 'More',
+        model: false,
+        children: [{
+          text: 'Import'
+        }, {
+          text: 'Export'
+        }, {
+          text: 'Print'
+        }, {
+          text: 'Undo changes'
+        }, {
+          text: 'Other contacts'
+        }]
+      }, {
+        icon: 'fas fa-cog',
+        text: 'Settings'
+      }, {
+        icon: 'fas fa-comment-alt',
+        text: 'Send feedback'
+      }, {
+        icon: 'fas fa-question-circle',
+        text: 'Help'
+      }, {
+        icon: 'fas fa-desktop',
+        text: 'App downloads'
+      }, {
+        icon: 'fas fa-keyboard',
+        text: 'Go to the old version'
+      }]
+    };
+  },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
     authenticated: "auth/authenticated",
     user: "auth/user"
@@ -6776,7 +7026,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "\n.full-height {\n  height: 100vh;\n}\n.flex-center {\n  align-items: center;\n  display: flex;\n  justify-content: center;\n}\n.position-ref {\n  position: relative;\n}\n.content {\n  text-align: center;\n}\n.title {\n  font-size: 84px;\n}\n.links > a {\n  color: #636b6f;\n  padding: 0 25px;\n  font-size: 13px;\n  font-weight: 600;\n  letter-spacing: 0.1rem;\n  text-decoration: none;\n  text-transform: uppercase;\n}\n.m-b-md {\n  margin-bottom: 30px;\n}\n", ""]);
+exports.push([module.i, "\n.full-height {\r\n  height: 100vh;\n}\n.flex-center {\r\n  align-items: center;\r\n  display: flex;\r\n  justify-content: center;\n}\n.position-ref {\r\n  position: relative;\n}\n.content {\r\n  text-align: center;\n}\n.title {\r\n  font-size: 84px;\n}\n.links > a {\r\n  color: #636b6f;\r\n  padding: 0 25px;\r\n  font-size: 13px;\r\n  font-weight: 600;\r\n  letter-spacing: 0.1rem;\r\n  text-decoration: none;\r\n  text-transform: uppercase;\n}\n.m-b-md {\r\n  margin-bottom: 30px;\n}\r\n", ""]);
 
 // exports
 
@@ -42021,17 +42271,458 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h1", [_vm._v("Hello")]),
-    _vm._v(" "),
-    _c("ul", [
-      _c("li", [
-        _c("a", { attrs: { href: "#" }, on: { click: _vm.logout } }, [
-          _vm._v("Logout")
-        ])
-      ])
-    ])
-  ])
+  return _c(
+    "v-app",
+    { attrs: { id: "inspire" } },
+    [
+      _c(
+        "v-navigation-drawer",
+        {
+          attrs: { clipped: _vm.$vuetify.breakpoint.lgAndUp, app: "" },
+          model: {
+            value: _vm.drawer,
+            callback: function($$v) {
+              _vm.drawer = $$v
+            },
+            expression: "drawer"
+          }
+        },
+        [
+          _c(
+            "v-list",
+            { attrs: { dense: "" } },
+            [
+              _vm._l(_vm.items, function(item) {
+                return [
+                  item.heading
+                    ? _c(
+                        "v-row",
+                        { key: item.heading, attrs: { align: "center" } },
+                        [
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "6" } },
+                            [
+                              item.heading
+                                ? _c("v-subheader", [
+                                    _vm._v(
+                                      "\n              " +
+                                        _vm._s(item.heading) +
+                                        "\n            "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              staticClass: "text-center",
+                              attrs: { cols: "6" }
+                            },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "body-2 black--text",
+                                  attrs: { href: "#!" }
+                                },
+                                [_vm._v("EDIT")]
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    : item.children
+                    ? _c(
+                        "v-list-group",
+                        {
+                          key: item.text,
+                          attrs: {
+                            "prepend-icon": item.model
+                              ? item.icon
+                              : item["icon-alt"],
+                            "append-icon": ""
+                          },
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "activator",
+                                fn: function() {
+                                  return [
+                                    _c(
+                                      "v-list-item-content",
+                                      [
+                                        _c("v-list-item-title", [
+                                          _vm._v(
+                                            "\n                " +
+                                              _vm._s(item.text) +
+                                              "\n              "
+                                          )
+                                        ])
+                                      ],
+                                      1
+                                    )
+                                  ]
+                                },
+                                proxy: true
+                              }
+                            ],
+                            null,
+                            true
+                          ),
+                          model: {
+                            value: item.model,
+                            callback: function($$v) {
+                              _vm.$set(item, "model", $$v)
+                            },
+                            expression: "item.model"
+                          }
+                        },
+                        [
+                          _vm._v(" "),
+                          _vm._l(item.children, function(child, i) {
+                            return _c(
+                              "v-list-item",
+                              { key: i, attrs: { link: "" } },
+                              [
+                                child.icon
+                                  ? _c(
+                                      "v-list-item-action",
+                                      [
+                                        _c("v-icon", [
+                                          _vm._v(_vm._s(child.icon))
+                                        ])
+                                      ],
+                                      1
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _c(
+                                  "v-list-item-content",
+                                  [
+                                    _c("v-list-item-title", [
+                                      _vm._v(
+                                        "\n                " +
+                                          _vm._s(child.text) +
+                                          "\n              "
+                                      )
+                                    ])
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          })
+                        ],
+                        2
+                      )
+                    : _c(
+                        "v-list-item",
+                        { key: item.text, attrs: { link: "" } },
+                        [
+                          _c(
+                            "v-list-item-action",
+                            [_c("v-icon", [_vm._v(_vm._s(item.icon))])],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-list-item-content",
+                            [
+                              _c("v-list-item-title", [
+                                _vm._v(
+                                  "\n              " +
+                                    _vm._s(item.text) +
+                                    "\n            "
+                                )
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                ]
+              })
+            ],
+            2
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-app-bar",
+        {
+          attrs: {
+            "clipped-left": _vm.$vuetify.breakpoint.lgAndUp,
+            app: "",
+            color: "blue darken-3",
+            dark: ""
+          }
+        },
+        [
+          _c(
+            "v-app-bar-nav-icon",
+            {
+              on: {
+                click: function($event) {
+                  $event.stopPropagation()
+                  _vm.drawer = !_vm.drawer
+                }
+              }
+            },
+            [_c("i", { staticClass: "fas fa-bars fa-lg" })]
+          ),
+          _vm._v(" "),
+          _c(
+            "v-toolbar-title",
+            { staticClass: "ml-0 pl-4", staticStyle: { width: "300px" } },
+            [
+              _c("span", { staticClass: "hidden-sm-and-down" }, [
+                _vm._v("Google Contacts")
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("v-text-field", {
+            staticClass: "hidden-sm-and-down",
+            attrs: {
+              flat: "",
+              "solo-inverted": "",
+              "hide-details": "",
+              "prepend-inner-icon": "fas fa-search",
+              label: "Search"
+            }
+          }),
+          _vm._v(" "),
+          _c("v-spacer")
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-content",
+        [
+          _c("v-container", {
+            staticClass: "fill-height",
+            attrs: { fluid: "" }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-btn",
+        {
+          attrs: {
+            bottom: "",
+            color: "pink",
+            dark: "",
+            fab: "",
+            fixed: "",
+            right: ""
+          },
+          on: {
+            click: function($event) {
+              _vm.dialog = !_vm.dialog
+            }
+          }
+        },
+        [_c("v-icon", [_vm._v("fas fa-plus")])],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          attrs: { width: "800px" },
+          model: {
+            value: _vm.dialog,
+            callback: function($$v) {
+              _vm.dialog = $$v
+            },
+            expression: "dialog"
+          }
+        },
+        [
+          _c(
+            "v-card",
+            [
+              _c("v-card-title", { staticClass: "grey darken-2" }, [
+                _vm._v("\n        Create contact\n      ")
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-container",
+                [
+                  _c(
+                    "v-row",
+                    { staticClass: "mx-2" },
+                    [
+                      _c(
+                        "v-col",
+                        {
+                          staticClass: "align-center justify-space-between",
+                          attrs: { cols: "12" }
+                        },
+                        [
+                          _c(
+                            "v-row",
+                            { staticClass: "mr-0", attrs: { align: "center" } },
+                            [
+                              _c(
+                                "v-avatar",
+                                {
+                                  staticClass: "mx-3",
+                                  attrs: { size: "40px" }
+                                },
+                                [
+                                  _c("img", {
+                                    attrs: {
+                                      src:
+                                        "//ssl.gstatic.com/s2/oz/images/sge/grey_silhouette.png",
+                                      alt: ""
+                                    }
+                                  })
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("v-text-field", {
+                                attrs: { placeholder: "Name" }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "6" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              "prepend-icon": "far fa-address-card",
+                              placeholder: "Company"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "6" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: { placeholder: "Job title" }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              "prepend-icon": "far fa-envelope",
+                              placeholder: "Email"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              type: "tel",
+                              "prepend-icon": "fas fa-phone-alt",
+                              placeholder: "(000) 000 - 0000"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              "prepend-icon": "fas fa-align-left",
+                              placeholder: "Notes"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c("v-btn", { attrs: { text: "", color: "primary" } }, [
+                    _vm._v("More")
+                  ]),
+                  _vm._v(" "),
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { text: "", color: "primary" },
+                      on: {
+                        click: function($event) {
+                          _vm.dialog = false
+                        }
+                      }
+                    },
+                    [_vm._v("Cancel")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { text: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.dialog = false
+                        }
+                      }
+                    },
+                    [_vm._v("Save")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -101080,8 +101771,8 @@ _index__WEBPACK_IMPORTED_MODULE_0__["default"].subscribe(function (mutation) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/joah/Desktop/fullstack/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/joah/Desktop/fullstack/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\code\fullstack\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\code\fullstack\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
