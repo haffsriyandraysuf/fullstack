@@ -1,5 +1,6 @@
 <template>
   <v-app id="inspire">
+    <Navbar />
     <v-content>
       <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">
@@ -37,10 +38,10 @@
                     <v-card-actions>
                       <v-btn block color="primary" type="submit">Login</v-btn>
                     </v-card-actions>
-                    <v-card-text>
+                    <!-- <v-card-text>
                       New to this website?
                       <router-link to="/register">Create an account.</router-link>
-                    </v-card-text>
+                    </v-card-text>-->
                   </v-form>
                 </ValidationObserver>
               </v-card-text>
@@ -53,10 +54,13 @@
 </template>
 
 <script>
+import Navbar from "../../../components/Navbar";
 import { mapActions } from "vuex";
 export default {
   name: "login",
-  components: {},
+  components: {
+    Navbar
+  },
   data: () => ({
     form: {
       email: "",
@@ -76,9 +80,6 @@ export default {
         });
       }
     }
-  },
-  mounted() {
-    console.log("Component mounted.");
   }
 };
 </script>

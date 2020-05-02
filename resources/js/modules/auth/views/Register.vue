@@ -1,5 +1,6 @@
 <template>
   <v-app id="inspire">
+    <Navbar />
     <v-content>
       <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">
@@ -65,9 +66,9 @@
                     <v-card-actions>
                       <v-btn block color="primary" type="submit">Create</v-btn>
                     </v-card-actions>
-                    <v-card-text>
+                    <!-- <v-card-text>
                       <router-link to="/login">Already have an account? Login!</router-link>
-                    </v-card-text>
+                    </v-card-text>-->
                   </v-form>
                 </ValidationObserver>
               </v-card-text>
@@ -80,10 +81,13 @@
 </template>
 
 <script>
+import Navbar from "../../../components/Navbar";
 import AuthService from "../services";
 export default {
   name: "register",
-  components: {},
+  components: {
+    Navbar
+  },
   data: () => ({
     form: {
       name: "",
@@ -111,9 +115,6 @@ export default {
           });
       }
     }
-  },
-  mounted() {
-    console.log("Component mounted.");
   }
 };
 </script>
