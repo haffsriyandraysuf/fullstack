@@ -7,14 +7,14 @@
       <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
         <span class="hidden-sm-and-down">Google Contacts</span>
       </v-toolbar-title>
-      <v-text-field
+      <!-- <v-text-field
         flat
         solo-inverted
         hide-details
         prepend-inner-icon="fas fa-search"
         label="Search"
         class="hidden-sm-and-down"
-      />
+      />-->
       <v-spacer />
       <a href="#" class="signout nav-link" @click="signout">Sign Out</a>
     </v-app-bar>
@@ -41,7 +41,12 @@
                 <v-list-item-title>{{ item.text }}</v-list-item-title>
               </v-list-item-content>
             </template>
-            <v-list-item v-for="(child, i) in item.children" :key="i" link>
+            <v-list-item
+              v-for="(child, i) in item.children"
+              :key="i"
+              class="nav-link"
+              :to="child.route"
+            >
               <v-list-item-action v-if="child.icon">
                 <v-icon>{{ child.icon }}</v-icon>
               </v-list-item-action>
@@ -50,7 +55,7 @@
               </v-list-item-content>
             </v-list-item>
           </v-list-group>
-          <v-list-item v-else :key="item.text" link>
+          <v-list-item v-else :key="item.text" :to="item.route" class="nav-link">
             <v-list-item-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-action>
@@ -70,9 +75,19 @@ export default {
   data: () => ({
     drawer: null,
     items: [
-      { icon: "fas fa-address-book", text: "Contacts" },
-      { icon: "fas fa-history", text: "Frequently contacted" },
-      { icon: "far fa-copy", text: "Duplicates" },
+      {
+        icon: "fas fa-tachometer-alt",
+        text: "Dashboard",
+        route: "/dashboard"
+      },
+      {
+        icon: "fas fa-address-book",
+        "icon-alt": "fas fa-address-book",
+        text: "Label Waki",
+        children: [
+          { icon: "fas fa-address-books", text: "Price", route: "/price" }
+        ]
+      },
       {
         icon: "fas fa-angle-up",
         "icon-alt": "fas fa-angle-down",
@@ -93,11 +108,7 @@ export default {
           { text: "Other contacts" }
         ]
       },
-      { icon: "fas fa-cog", text: "Settings" },
-      { icon: "fas fa-comment-alt", text: "Send feedback" },
-      { icon: "fas fa-question-circle", text: "Help" },
-      { icon: "fas fa-desktop", text: "App downloads" },
-      { icon: "fas fa-keyboard", text: "Go to the old version" }
+      { icon: "fas fa-cog", text: "Settings" }
     ]
   }),
   methods: {
